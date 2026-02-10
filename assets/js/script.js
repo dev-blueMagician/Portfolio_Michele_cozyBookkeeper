@@ -1,7 +1,7 @@
 /*
 * ----------------------------------------------------------------------------------------
 Author       : Themesvila
-Template Name: Cozy Bookkeeper - Personal Portfolio HTML Template
+Template Name: Cozy Bookkeeper
 Version      : 1.0                                          
 * ----------------------------------------------------------------------------------------
 */
