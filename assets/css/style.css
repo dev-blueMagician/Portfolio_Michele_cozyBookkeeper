@@ -1692,6 +1692,14 @@ ul.extra-skills li i {
   width: 100%;
 }
 
+.blog-detail-image {
+  text-align: center;
+}
+
+.blog-detail-image img {
+  max-height: 100vh;
+}
+
 .single-info h3 {
   font-size: 20px;
 }
@@ -2619,7 +2627,7 @@ body.loaded {
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.3px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .blog-post-caption h3 {
