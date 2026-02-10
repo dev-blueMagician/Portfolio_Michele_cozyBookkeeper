@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Book a meeting with Michele Palfalvi - Cozy Bookkeeper" />
+    <title>Book a Meeting - Cozy Bookkeeper</title>
+    <link rel="apple-touch-icon" href="assets/images/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/remixicon.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <style>
+      .booking-container { padding: 200px 0 100px; }
+      .booking-card { background: #fff; border: 1px solid rgba(0,0,0,0.05); border-radius: 20px; padding: 40px; box-shadow: rgba(255,255,255,0.025) 0px 0.362176px 0.651917px -1px inset, rgba(255,255,255,0.036) 0px 3px 5.4px -2px inset; }
+      .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin: 20px 0; }
+      .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+      .calendar-day { text-align: center; padding: 10px; font-weight: 500; color: #444; }
+      .calendar-date { text-align: center; padding: 15px; border: 1px solid #e0e0e0; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+      .calendar-date:hover { border-color: #448c74; background: #f5f5f5; }
+      .calendar-date.selected { background: #448c74; color: #fff; border-color: #448c74; }
+      .calendar-date.disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+      .time-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin: 20px 0; }
+      .time-slot { padding: 12px; text-align: center; border: 1px solid #e0e0e0; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+      .time-slot:hover { border-color: #448c74; background: #f5f5f5; }
+      .time-slot.selected { background: #448c74; color: #fff; border-color: #448c74; }
+      .time-slot.disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+      .booking-step { display: none; }
+      .booking-step.active { display: block; }
+      .step-indicator { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+      .step-dot { width: 12px; height: 12px; border-radius: 50%; background: #e0e0e0; transition: 0.3s; }
+      .step-dot.active { background: #448c74; width: 30px; border-radius: 6px; }
+      .nav-btn { margin-top: 20px; }
+      .booking-summary { background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0; }
+      .booking-summary h5 { margin-bottom: 15px; font-size: 18px; }
+      .booking-summary p { margin: 5px 0; color: #444; }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-upper">
+        <div class="container">
+          <div class="header-inner d-flex align-items-center">
+            <div class="logo-outer">
+              <div class="logo">
+                <a href="index.html"><img src="assets/images/logo.jpeg" alt="Logo" title="Logo" /></a>
+              </div>
+            </div>
+            <div class="nav-outer clearfix me-5">
+              <nav class="main-menu navbar-expand-lg">
+                <div class="navbar-header">
+                  <div class="mobile-logo">
+                    <a href="index.html"><img src="assets/images/logo.jpeg" alt="Logo" title="Logo" /></a>
+                  </div>
+                  <button type="button" class="navbar-toggle" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                  <ul class="navigation onepage clearfix">
+                    <li><a href="index.html#about">about</a></li>
+                    <li><a href="index.html#service">services</a></li>
+                    <li><a href="index.html#blog">Blog</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+            <div class="menu-btns">
+              <a href="tel:" class="theme-btn">Call Us!<i class="ri-phone-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="booking-container">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="booking-card">
+              <div class="text-center mb-4">
+                <h2 style="font-size: 42px; font-weight: 700; text-transform: uppercase;">Book a <span style="color: transparent; -webkit-text-stroke: 1px #000;">Meeting</span></h2>
+                <p>Schedule a consultation with Michele Palfalvi</p>
+              </div>
+
+              <div class="step-indicator">
+                <div class="step-dot active" data-step="1"></div>
+                <div class="step-dot" data-step="2"></div>
+                <div class="step-dot" data-step="3"></div>
+              </div>
+
+              <!-- Step 1: Date Selection -->
+              <div class="booking-step active" id="step1">
+                <div class="mb-4">
+                  <label for="timezone"><strong>Timezone:</strong></label>
+                  <select id="timezone" class="form-control" style="max-width: 300px;">
+                    <option value="EST" selected>Eastern Time (EST/EDT)</option>
+                    <option value="CST">Central Time (CST/CDT)</option>
+                    <option value="MST">Mountain Time (MST/MDT)</option>
+                    <option value="PST">Pacific Time (PST/PDT)</option>
+                  </select>
+                </div>
+                <h4 class="mb-3">Select a Date</h4>
+                <div class="calendar-header">
+                  <button class="theme-btn" id="prevMonth"><i class="ri-arrow-left-s-line"></i></button>
+                  <h5 id="currentMonth"></h5>
+                  <button class="theme-btn" id="nextMonth"><i class="ri-arrow-right-s-line"></i></button>
+                </div>
+                <div class="calendar-grid" id="calendarDays">
+                  <div class="calendar-day">Sun</div>
+                  <div class="calendar-day">Mon</div>
+                  <div class="calendar-day">Tue</div>
+                  <div class="calendar-day">Wed</div>
+                  <div class="calendar-day">Thu</div>
+                  <div class="calendar-day">Fri</div>
+                  <div class="calendar-day">Sat</div>
+                </div>
+                <div class="calendar-grid" id="calendarDates"></div>
+                <div class="nav-btn text-end">
+                  <button class="theme-btn" id="nextToTime" disabled>Next <i class="ri-arrow-right-line"></i></button>
+                </div>
+              </div>
+
+              <!-- Step 2: Time Selection -->
+              <div class="booking-step" id="step2">
+                <h4 class="mb-3">Select a Time</h4>
+                <p class="mb-3">Available times for <strong id="selectedDateDisplay"></strong></p>
+                <div class="time-slots" id="timeSlots"></div>
+                <div class="nav-btn d-flex justify-content-between">
+                  <button class="theme-btn" id="backToDate"><i class="ri-arrow-left-line"></i> Back</button>
+                  <button class="theme-btn" id="nextToDetails" disabled>Next <i class="ri-arrow-right-line"></i></button>
+                </div>
+              </div>
+
+              <!-- Step 3: Details Form -->
+              <div class="booking-step" id="step3">
+                <h4 class="mb-3">Your Details</h4>
+                <div class="booking-summary">
+                  <h5>Booking Summary</h5>
+                  <p><i class="ri-calendar-line"></i> <strong>Date:</strong> <span id="summaryDate"></span></p>
+                  <p><i class="ri-time-line"></i> <strong>Time:</strong> <span id="summaryTime"></span></p>
+                </div>
+                <form id="bookingForm">
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="fullName">Full Name *</label>
+                      <input type="text" id="fullName" class="form-control" required placeholder="John Doe" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="email">Email Address *</label>
+                      <input type="email" id="email" class="form-control" required placeholder="john@example.com" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="phone">Phone Number</label>
+                      <input type="tel" id="phone" class="form-control" placeholder="+1 (555) 000-0000" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="company">Company Name</label>
+                      <input type="text" id="company" class="form-control" placeholder="Your Company" />
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <label for="notes">Additional Notes</label>
+                      <textarea id="notes" class="form-control" rows="4" placeholder="Tell us about your bookkeeping needs..."></textarea>
+                    </div>
+                  </div>
+                  <div class="nav-btn d-flex justify-content-between">
+                    <button type="button" class="theme-btn" id="backToTime"><i class="ri-arrow-left-line"></i> Back</button>
+                    <button type="submit" class="theme-btn">Confirm Booking <i class="ri-check-line"></i></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="main-footer">
+      <div class="footer-bottom pt-50 pb-40">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="copyright-text">
+                <p>Copyright @2026,<br />Bloomfield Hills, MI</p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="copyright-text extra-copyright text-end">
+                <div class="social-icons-container">
+                  <a class="p-3 social-icon" href="https://www.facebook.com/thecozybookkeeper" target="_blank"><i class="ri-facebook-fill"></i></a>
+                  <a class="p-3 social-icon" href="https://www.instagram.com/thecozybookkeeper/" target="_blank"><i class="ri-instagram-fill"></i></a>
+                  <a class="p-3 social-icon" href="https://x.com/CozyBookkeeper" target="_blank"><i class="ri-twitter-fill"></i></a>
+                  <a class="p-3 social-icon" href="https://www.youtube.com/channel/UCcwncQNn_jTTEZKUH-iEiLg" target="_blank"><i class="ri-youtube-fill"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+      let selectedDate = null;
+      let selectedTime = null;
+      let currentMonth = new Date();
+
+      const timeSlots = ['12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM'];
+
+      function renderCalendar() {
+        const year = currentMonth.getFullYear();
+        const month = currentMonth.getMonth();
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        $('#currentMonth').text(currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }));
+        $('#calendarDates').empty();
+
+        for (let i = 0; i < firstDay; i++) {
+          $('#calendarDates').append('<div></div>');
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          const date = new Date(year, month, day);
+          const dayOfWeek = date.getDay();
+          const isWeekend = dayOfWeek === 0 || dayOfWeek === 1 || dayOfWeek === 6;
+          const isPast = date < today;
+          const dateStr = date.toISOString().split('T')[0];
+          const isSelected = selectedDate === dateStr;
+
+          const $dateEl = $('<div class="calendar-date"></div>')
+            .text(day)
+            .attr('data-date', dateStr);
+
+          if (isPast || isWeekend) {
+            $dateEl.addClass('disabled');
+          } else {
+            $dateEl.on('click', function() {
+              $('.calendar-date').removeClass('selected');
+              $(this).addClass('selected');
+              selectedDate = $(this).attr('data-date');
+              $('#nextToTime').prop('disabled', false);
+            });
+          }
+
+          if (isSelected) $dateEl.addClass('selected');
+          $('#calendarDates').append($dateEl);
+        }
+      }
+
+      function renderTimeSlots() {
+        const tz = $('#timezone').val();
+        $('#timeSlots').empty();
+        timeSlots.forEach(time => {
+          const $slot = $('<div class="time-slot"></div>')
+            .text(time)
+            .on('click', function() {
+              $('.time-slot').removeClass('selected');
+              $(this).addClass('selected');
+              selectedTime = time;
+              $('#nextToDetails').prop('disabled', false);
+            });
+          $('#timeSlots').append($slot);
+        });
+      }
+
+      function goToStep(step) {
+        $('.booking-step').removeClass('active');
+        $('.step-dot').removeClass('active');
+        $(`#step${step}`).addClass('active');
+        $(`.step-dot[data-step="${step}"]`).addClass('active');
+
+        if (step === 2) {
+          const date = new Date(selectedDate);
+          $('#selectedDateDisplay').text(date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+          renderTimeSlots();
+        } else if (step === 3) {
+          const date = new Date(selectedDate);
+          const tz = $('#timezone').val();
+          $('#summaryDate').text(date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+          $('#summaryTime').text(selectedTime + ' ' + tz);
+        }
+      }
+
+      $('#prevMonth').on('click', function() {
+        currentMonth.setMonth(currentMonth.getMonth() - 1);
+        renderCalendar();
+      });
+
+      $('#nextMonth').on('click', function() {
+        currentMonth.setMonth(currentMonth.getMonth() + 1);
+        renderCalendar();
+      });
+
+      $('#nextToTime').on('click', () => goToStep(2));
+      $('#backToDate').on('click', () => goToStep(1));
+      $('#nextToDetails').on('click', () => goToStep(3));
+      $('#backToTime').on('click', () => goToStep(2));
+
+      $('#bookingForm').on('submit', function(e) {
+        e.preventDefault();
+        alert('Booking confirmed! You will receive a confirmation email shortly.');
+        window.location.href = 'index.html';
+      });
+
+      renderCalendar();
+    </script>
+  </body>
+</html>
