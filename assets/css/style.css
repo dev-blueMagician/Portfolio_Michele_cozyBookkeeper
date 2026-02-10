@@ -1,7 +1,7 @@
 ﻿/*
 * ----------------------------------------------------------------------------------------
 Author       : Themesvila
-Template Name: Dorbesh - Personal Portfolio HTML Template
+Template Name: Cozy Bookkeeper - Personal Portfolio HTML Template
 Version      : 1.0                                          
 * ----------------------------------------------------------------------------------------
 */
@@ -1145,7 +1145,7 @@ html {
 * ----------------------------------------------------------------------------------------
 */
 .about-area {
-  padding-top: 115px;
+  padding-top: 200px;
   padding-bottom: 15px;
 }
 
@@ -2808,6 +2808,10 @@ ul.blog_pagination li a:hover {
 
 .single-side-bar ul li a:hover {
   color: var(--primary-color);
+}
+
+.social-icon {
+  font-size: 28px;
 }
 
 .single-blog-social-icon {
